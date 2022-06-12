@@ -5,5 +5,13 @@ const intialState = {
 };
 
 export default function filtersReducer(state = intialState, action){
-  return state;
+  switch (action.type) {
+    case 'filters/filterChanged':
+      return {
+        ...state,
+        ...action.payload
+      };
+    default:
+      return state;
+  }
 }

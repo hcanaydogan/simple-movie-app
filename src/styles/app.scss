@@ -1,6 +1,9 @@
-body {
-  font-family: Inconsolata, sans-serif;
-  p {
-    background-color: green;
+.movie-list{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  .movie-list-item{
+    width: 30%;
   }
 }

@@ -1,3 +1,5 @@
+import { uniqBy } from "lodash";
+
 const API_URL = "http://www.omdbapi.com/?apikey=fd5fe260";
 const intialState = [];
 
@@ -14,14 +16,14 @@ export default function moviesReducer(state = intialState, action) {
 
 export const fetchMovies = () => async (dispatch, getState) => {
   const { text: s = '', year: y = '', type = '' } = getState().filters;
-  const queryParams = new URLSearchParams({s, y, type}).toString();
+  const queryParams = new URLSearchParams({ s, y, type }).toString();
 
   try {
     console.log('state before', getState());
     const response = await fetch(`${API_URL}&${queryParams}`);
     const { Search: movies } = await response.json();
-    
-    dispatch(moviesFetched(movies));
+    const uniqueMovies = uniqBy(movies, 'imdbID');
+    dispatch(moviesFetched(uniqueMovies));
     console.log('state after', getState());
   } catch (e) {
     console.log('%cError while fetching movies: ', 'font-size: 18px; background: black; color: orange;', '\n', e);
