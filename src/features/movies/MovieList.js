@@ -8,20 +8,26 @@ const selectMovieImdbIDs = state => state.movies.map(movie => movie.imdbID);
 
 const MovieList = () => {
   const movieImdbIDs = useSelector(selectMovieImdbIDs, shallowEqual);
-  const renderedListItems = movieImdbIDs.map(movieImdbID => {
+  const renderedListItems = movieImdbIDs.map((movieImdbID, i) => {
     console.log(movieImdbID)
     return (
-      <Grid key={movieImdbID} item xs={6} sm={4} md={3} lg={2}>
-        <MovieListItem id={movieImdbID} />
-      </Grid>
+      <MovieListItem key={i} id={movieImdbID} />
     );
   });
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={{ xs: 1}}>
-        {renderedListItems}
-      </Grid>
+    <Box sx={{
+      display: 'grid', 
+      gap: 1,
+      gridTemplateColumns: {
+        lg: 'repeat(5, 1fr)',
+        md: 'repeat(4, 1fr)',
+        sm: 'repeat(3, 1fr)',
+        xs: 'repeat(2, 1fr)'
+      },
+      justifyItems: 'center'
+    }}>
+      {renderedListItems}
     </Box>
   )
   return <ul className="movie-list">{renderedListItems}</ul>

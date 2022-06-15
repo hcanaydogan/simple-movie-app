@@ -3,9 +3,9 @@ import MovieList from "../features/movies/MovieList";
 
 function Movies(){
   return (
-    <div>
+    <>
       <MovieList />
-    </div>
+    </>
   )
 }
 

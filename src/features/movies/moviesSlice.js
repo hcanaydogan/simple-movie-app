@@ -1,4 +1,4 @@
-import { uniqBy } from "lodash";
+//import { uniqByi, uniqueId } from "lodash";
 
 const API_URL = "http://www.omdbapi.com/?apikey=fd5fe260";
 const intialState = [];
@@ -18,9 +18,8 @@ export const fetchMovies = () => async (dispatch, getState) => {
   const { text: s = '', year: y = '', type = '' } = getState().filters;
   const queryParams = new URLSearchParams({ s, y, type }).toString();
 /* @TODO remove before commit +++ */
-const uniqueMovies = uniqBy(mockMovies(), 'imdbID');
-    dispatch(moviesFetched(uniqueMovies));
-return;
+  dispatch(moviesFetched(mockMovies()));
+  return;
 /* @TODO remove before commit --- */
   try {
     console.log('state before', getState());

@@ -20,7 +20,7 @@ const MovieListItem = ({ id }) => {
   const {Year, Title, Type, imdbID, Poster } = movie;
 
   return (
-    <Card sx={{ maxWidth: 250 }}>
+    <Card sx={{ maxWidth: 250, width: '100%' }}>
       <CardMedia
         component="img"
         height="140"
