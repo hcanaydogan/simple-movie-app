@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 
 function App() {
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" className='main-container'>
       <Header />
       <Main />
       <Footer />

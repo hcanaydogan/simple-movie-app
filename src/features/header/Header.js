@@ -9,7 +9,7 @@ import { IconButton } from '@mui/material';
 export default function Header() {
   const navigate = useNavigate();
   return (
-    <Box sx={{ flexGrow: 1 }} style={{marginBottom: '45px'}}>
+    <Box component="header" style={{ marginBottom: '45px' }}>
       <AppBar position="relative">
         <Toolbar>
           <IconButton onClick={() => navigate('/')}>

@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
+import 'normalize.css';
 import './index.scss';
 import App from './App';
 
