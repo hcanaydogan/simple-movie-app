@@ -1,17 +1,15 @@
 import React from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
-import MovieListItem from './MovieListItem';
+import MovieGridItem from './MovieGridItem';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 
 const selectMovieImdbIDs = state => state.movies.map(movie => movie.imdbID);
 
 const MovieList = () => {
   const movieImdbIDs = useSelector(selectMovieImdbIDs, shallowEqual);
   const renderedListItems = movieImdbIDs.map((movieImdbID, i) => {
-    console.log(movieImdbID)
     return (
-      <MovieListItem key={i} id={movieImdbID} />
+      <MovieGridItem key={i} id={movieImdbID} />
     );
   });
 

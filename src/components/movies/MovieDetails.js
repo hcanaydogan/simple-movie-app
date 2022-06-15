@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
 
-function Movie(){
+function MovieDetails(){
   let params = useParams();
   return (
-    <div>movie - {params.imdbId}</div>
+    <div>movieDetails - {params.imdbId}</div>
   )
 }
 
-export default Movie;
+export default MovieDetails;

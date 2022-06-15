@@ -1,1 +1,0 @@
-export const availableTypes = ['movie', 'series', 'episode'	]

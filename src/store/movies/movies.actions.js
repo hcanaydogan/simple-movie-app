@@ -1,22 +1,7 @@
-//import { uniqByi, uniqueId } from "lodash";
-
-const API_URL = "http://www.omdbapi.com/?apikey=fd5fe260";
-const intialState = [];
-
 export const moviesFetched = movies => ({ type: 'movies/moviesFetched', payload: movies });
 
-export default function moviesReducer(state = intialState, action) {
-  switch (action.type) {
-    case 'movies/moviesFetched':
-      return action.payload;
-    default:
-      return state;
-  }
-}
-
-export const fetchMovies = () => async (dispatch, getState) => {
-  const { text: s = '', year: y = '', type = '' } = getState().filters;
-  const queryParams = new URLSearchParams({ s, y, type }).toString();
+export const fetchMovies = (searchParams) => async (dispatch, getState) => {
+  const queryParams = new URLSearchParams(searchParams).toString();
 /* @TODO remove before commit +++ */
   dispatch(moviesFetched(mockMovies()));
   return;

@@ -14,10 +14,9 @@ const selectMovieByImdbID = (state, imdbID) => {
 };
 
 const MovieListItem = ({ id }) => {
-  console.log('MovieListItem render', id);
   let navigate = useNavigate();
   const movie = useSelector(state => selectMovieByImdbID(state, id));
-  const {Year, Title, Type, imdbID, Poster } = movie;
+  const {Year, Title, Type, imdbID, Poster} = movie;
 
   return (
     <Card sx={{ maxWidth: 250, width: '100%' }}>
