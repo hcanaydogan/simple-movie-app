@@ -1,15 +1,3 @@
-export const SearchParams = {
-  Type: {
-    All: '',
-    Movie: 'movie',
-    Series: 'series',
-    Episode: 'episode'
-  },
-  Text: 's',
-  Page: 'page',
-  Year: 'y'
-}
-
 const intialState = {
   Text: 'Pokemon',
   Type: '',

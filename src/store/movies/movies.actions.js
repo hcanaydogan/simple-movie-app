@@ -1,19 +1,20 @@
-export const moviesFetched = movies => ({ type: 'movies/moviesFetched', payload: movies });
+import { getMovies } from '../../services/Omdb/api';
+import { getQueryForMoviesApi } from '../../services/Omdb/utils';
+
+export const moviesFetchedSuccess = movies => ({ type: 'movies/moviesFetchedSuccess', payload: movies });
+export const moviesFetchedError = error => ({ type: 'movies/moviesFetchedError', payload: error });
 
 export const fetchMovies = (searchParams) => async (dispatch, getState) => {
-  const queryParams = new URLSearchParams(searchParams).toString();
 /* @TODO remove before commit +++ */
-  dispatch(moviesFetched(mockMovies()));
+  //dispatch(moviesFetched(mockMovies()));
   return;
 /* @TODO remove before commit --- */
   try {
-    console.log('state before', getState());
-    const response = await fetch(`${API_URL}&${queryParams}`);
-    const { Search: movies } = await response.json();
-    const uniqueMovies = uniqBy(movies, 'imdbID');
-    dispatch(moviesFetched(uniqueMovies));
-    console.log('state after', getState());
+    const queryParams = getQueryForMoviesApi(searchParams);
+    const {movies, totalResults} = await getMovies(queryParams);
+    dispatch(moviesFetchedSuccess({movies, totalResults}));
   } catch (e) {
+    dispatch(moviesFetchedError(e.toString()));
     console.log('%cError while fetching movies: ', 'font-size: 18px; background: black; color: orange;', '\n', e);
   }
 }

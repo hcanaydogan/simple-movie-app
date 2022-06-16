@@ -10,10 +10,10 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 
 const selectMovieByImdbID = (state, imdbID) => {
-  return state.movies.find(movie => movie.imdbID === imdbID);
+  return state.movies.entities.find(movie => movie.imdbID === imdbID);
 };
 
-const MovieListItem = ({ id }) => {
+const MovieCard = ({ id }) => {
   let navigate = useNavigate();
   const movie = useSelector(state => selectMovieByImdbID(state, id));
   const {Year, Title, Type, imdbID, Poster} = movie;
@@ -46,4 +46,4 @@ const MovieListItem = ({ id }) => {
   )
 };
 
-export default MovieListItem;
+export default MovieCard;

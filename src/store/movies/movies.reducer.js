@@ -1,13 +1,31 @@
-//import { uniqByi, uniqueId } from "lodash";
-
-const API_URL = "http://www.omdbapi.com/?apikey=fd5fe260";
-const intialState = [];
-
+const intialState = {
+  status: 'idle',
+  entities: [],
+  totalResults: 0,
+  errorMessage: null
+};
 
 export default function moviesReducer(state = intialState, action) {
   switch (action.type) {
-    case 'movies/moviesFetched':
-      return action.payload;
+    case 'movies/moviesFetchedSuccess':
+      return {
+        ...state,
+        status: 'success',
+        entities: action.payload.movies,
+        totalResults: action.payload.totalResults
+      }
+    case 'movies/moviesFetchedError':
+      console.log('moviesFetchedError')
+      return {
+        ...state,
+        status: 'error',
+        errorMessage: action.payload
+      }
+    case 'movies/moviesFetching':
+      return {
+        ...state,
+        status: 'loading'
+      }
     default:
       return state;
   }
