@@ -4,8 +4,6 @@ import { getMovieDetails } from '../services/Omdb/api';
 import { getParamsForMovieDetailsApi } from '../services/Omdb/utils';
 import MovieDetailsDescription from '../components/movies/MovieDetailsDescription';
 import MovieDetailsHeader from '../components/movies/MovieDetailsHeader';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 function Movie() {
   const params = useParams();
@@ -21,12 +19,12 @@ function Movie() {
     })();
   }, []);
 
-  const { Title, Year, Runtime, Rated, Ratings = [], Poster, Plot, Genre } = movie;
+  const { Title, Year, Runtime, Rated, Ratings = [], Poster, Plot, Genre, Director, Writer, Actors } = movie;
 
   return (
     <>
       <MovieDetailsHeader {...{...{Title, Year, Rated, Runtime, Ratings}}} />
-      <MovieDetailsDescription {...{...{Title, Poster, Plot, Genre}}} />
+      <MovieDetailsDescription {...{...{Title, Poster, Plot, Genre, Director, Writer, Actors}}} />
     </>
   );
 }

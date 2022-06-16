@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 
 function MovieDetailsHeader({Title, Year, Rated, Runtime, Ratings}) {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'whitesmoke', flexDirection: { xs: 'column', md: 'row'}}}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', marginLeft: '1rem', textAlign: {xs: 'center', md: 'left'} }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: { xs: 'column', md: 'row'}}}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: {xs: 'center', md: 'left'} }}>
           <Typography variant="h5">{Title}</Typography>
           <Typography>{Year} &#8226; {Rated} &#8226; {Runtime}</Typography>
         </Box>

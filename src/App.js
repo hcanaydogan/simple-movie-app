@@ -26,7 +26,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl" className='main-container'>
         <Header />
-        <main>
+        <main style={{backgroundColor: 'whitesmoke'}}>
           <Routes>
             <Route index element={<Movies />} />
             <Route path=":imdbId" element={<Movie />} />

@@ -5,8 +5,8 @@ import { SvgIcon } from '@mui/material';
 
 function MovieDetailsRating({ source, rating}) {
   return (
-    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem', flexFlow: 'wrap', justifyContent: 'center'}}>
-      <Typography variant="overline">{source.toUpperCase()}</Typography>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem'}}>
+      <Typography variant="caption">{source.toUpperCase()}</Typography>
       <Box sx={{ display: 'flex' }}>
         {source.includes('Tomato') ?
           (<img src="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/tomatometer/tomatometer-fresh.149b5e8adc3.svg" style={{ width: 20, height: 20 }} />)
