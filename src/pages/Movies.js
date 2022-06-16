@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import { fetchMovies } from '../store/movies/movies.actions';
+import { fetchMoviesBySearch } from '../store/movies/movies.actions';
 import MoviesGrid from "../components/movies/MoviesGrid";
 import SearchTool from '../components/search/SearchTool';
 
@@ -13,7 +13,7 @@ function Movies() {
 
   useEffect(() => {
     console.log('useEffect Main');
-    dispatch(fetchMovies(searchParams));
+    dispatch(fetchMoviesBySearch(searchParams));
   });
   
   return (
