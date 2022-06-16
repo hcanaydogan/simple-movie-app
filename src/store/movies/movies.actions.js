@@ -1,21 +1,20 @@
 import { getMovies } from '../../services/Omdb/api';
-import { getQueryForMoviesApi } from '../../services/Omdb/utils';
+import { getQueryParamsForMoviesApi } from '../../services/Omdb/utils';
 
 export const moviesFetchedSuccess = movies => ({ type: 'movies/moviesFetchedSuccess', payload: movies });
 export const moviesFetchedError = error => ({ type: 'movies/moviesFetchedError', payload: error });
 
 export const fetchMovies = (searchParams) => async (dispatch, getState) => {
 /* @TODO remove before commit +++ */
-  //dispatch(moviesFetched(mockMovies()));
+  dispatch(moviesFetchedSuccess({movies: mockMovies(), totalResults: 10}));
   return;
 /* @TODO remove before commit --- */
   try {
-    const queryParams = getQueryForMoviesApi(searchParams);
+    const queryParams = getQueryParamsForMoviesApi(searchParams);
     const {movies, totalResults} = await getMovies(queryParams);
     dispatch(moviesFetchedSuccess({movies, totalResults}));
   } catch (e) {
     dispatch(moviesFetchedError(e.toString()));
-    console.log('%cError while fetching movies: ', 'font-size: 18px; background: black; color: orange;', '\n', e);
   }
 }
 
