@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -9,14 +8,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 
-const selectMovieByImdbID = (state, imdbID) => {
-  return state.movies.entities.find(movie => movie.imdbID === imdbID);
-};
-
-const MovieCard = ({ id }) => {
+const MovieCard = ({Year, Title, Type, imdbID, Poster}) => {
   let navigate = useNavigate();
-  const movie = useSelector(state => selectMovieByImdbID(state, id));
-  const {Year, Title, Type, imdbID, Poster} = movie;
 
   return (
     <Card sx={{ maxWidth: 250, width: '100%' }}>
@@ -39,7 +32,7 @@ const MovieCard = ({ id }) => {
       </CardContent>
       <CardActions>
         <Tooltip title={`ImdbID: ${imdbID}`}> 
-          <Button className='imdb-btn' variant="contained" onClick={() => navigate(id)}>IMDB</Button>
+          <Button variant="contained" onClick={() => navigate(imdbID)}>IMDB</Button>
         </Tooltip>
       </CardActions>
     </Card>

@@ -29,6 +29,7 @@ function SearchTool() {
   return (
     <Toolbar sx={{ margin: '1rem 0', padding: '0.25rem 0' }}>
       <TextField
+        sx={{margin: '1rem'}}
         variant="outlined"
         color="secondary"
         value={searchText}
@@ -43,6 +44,7 @@ function SearchTool() {
           )
         }} />
       <ToggleButtonGroup
+        sx={{margin: '1rem'}}
         color="secondary"
         value={searchType}
         exclusive
@@ -53,7 +55,7 @@ function SearchTool() {
         <ToggleButton value="series">Series</ToggleButton>
         <ToggleButton value="episode">Episode</ToggleButton>
       </ToggleButtonGroup>
-      <Button variant="contained" color="secondary" onClick={handleSearchClick}>Search</Button>
+      <Button variant="contained" color="secondary" onClick={handleSearchClick} sx={{margin: '1rem'}}>Search</Button>
     </Toolbar>
   )
 }

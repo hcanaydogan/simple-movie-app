@@ -2,10 +2,10 @@ import React from 'react';
 import MovieCard from './MovieCard';
 import Box from '@mui/material/Box';
 
-const MoviesGrid = ({ movieImdbIDs }) => {
-  const renderedListItems = movieImdbIDs.map((movieImdbID, i) => {
+const MoviesGrid = ({ movies }) => {
+  const renderedListItems = movies.map((movie, i) => {
     return (
-      <MovieCard key={i} id={movieImdbID} />
+      <MovieCard key={i} {...movie} />
     );
   });
 
@@ -23,7 +23,7 @@ const MoviesGrid = ({ movieImdbIDs }) => {
     }}>
       {renderedListItems}
     </Box>
-  )
+  );
 };
 
 export default MoviesGrid;

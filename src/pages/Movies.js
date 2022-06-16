@@ -4,21 +4,21 @@ import { fetchMoviesBySearch } from '../store/movies/movies.actions';
 import MoviesGrid from "../components/movies/MoviesGrid";
 import SearchTool from '../components/search/SearchTool';
 
-const selectMovieImdbIDs = state => state.movies.entities.map(movie => movie.imdbID);
+const selectMovies = state => state.movies.entities;
 
 function Movies() {
   const dispatch = useDispatch();
   const searchParams = useSelector(state => state.search, shallowEqual);
-  const movieImdbIDs = useSelector(selectMovieImdbIDs, shallowEqual);
-
+  const movies = useSelector(selectMovies, shallowEqual);
+  
   useEffect(() => {
     dispatch(fetchMoviesBySearch(searchParams));
-  });
+  }, []);
   
   return (
     <>
       <SearchTool />
-      <MoviesGrid movieImdbIDs={movieImdbIDs} />
+      <MoviesGrid movies={movies} />
     </>
   )
 }
