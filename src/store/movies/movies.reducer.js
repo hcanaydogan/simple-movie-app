@@ -15,7 +15,6 @@ export default function moviesReducer(state = intialState, action) {
         totalResults: action.payload.totalResults
       }
     case 'movies/moviesFetchedError':
-      console.log('moviesFetchedError')
       return {
         ...state,
         status: 'error',

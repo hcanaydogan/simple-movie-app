@@ -3,7 +3,6 @@ import MovieCard from './MovieCard';
 import Box from '@mui/material/Box';
 
 const MoviesGrid = ({ movieImdbIDs }) => {
-  console.log('MoviesGrid', movieImdbIDs);
   const renderedListItems = movieImdbIDs.map((movieImdbID, i) => {
     return (
       <MovieCard key={i} id={movieImdbID} />

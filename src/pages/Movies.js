@@ -12,7 +12,6 @@ function Movies() {
   const movieImdbIDs = useSelector(selectMovieImdbIDs, shallowEqual);
 
   useEffect(() => {
-    console.log('useEffect Main');
     dispatch(fetchMoviesBySearch(searchParams));
   });
   

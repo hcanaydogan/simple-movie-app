@@ -5,7 +5,6 @@ async function OmdbGetJson(queryParams) {
   const response = await fetch(request);
 
   if (!response.ok) {
-    console.log(response)
     throw new Error('HTTP error with status:' + response.status)
   };
 
