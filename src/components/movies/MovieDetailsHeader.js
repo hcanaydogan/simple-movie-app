@@ -2,13 +2,11 @@ import * as React from 'react';
 import MovieDetailsRating from './MovieDetailsRating';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
 
 function MovieDetailsHeader({Title, Year, Rated, Runtime, Ratings}) {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'whitesmoke' }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', marginLeft: '1rem' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'whitesmoke', flexDirection: { xs: 'column', md: 'row'}}}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', marginLeft: '1rem', textAlign: {xs: 'center', md: 'left'} }}>
           <Typography variant="h5">{Title}</Typography>
           <Typography>{Year} &#8226; {Rated} &#8226; {Runtime}</Typography>
         </Box>

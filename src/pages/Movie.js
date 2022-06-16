@@ -21,16 +21,14 @@ function Movie() {
     })();
   }, []);
 
-  const { Title, Year, Runtime, Rated, Ratings = [], Poster, Plot } = movie;
+  const { Title, Year, Runtime, Rated, Ratings = [], Poster, Plot, Genre } = movie;
 
   return (
     <>
       <MovieDetailsHeader {...{...{Title, Year, Rated, Runtime, Ratings}}} />
-      <MovieDetailsDescription {...{...{Title, Poster, Plot}}} />
+      <MovieDetailsDescription {...{...{Title, Poster, Plot, Genre}}} />
     </>
   );
 }
 
 export default Movie;
-
-//title={Title} year={Year} runtime={Runtime} rated={Rated} ratings={Ratings}

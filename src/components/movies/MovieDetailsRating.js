@@ -5,7 +5,7 @@ import { SvgIcon } from '@mui/material';
 
 function MovieDetailsRating({ source, rating}) {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem' }}>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem', flexFlow: 'wrap', justifyContent: 'center'}}>
       <Typography variant="overline">{source.toUpperCase()}</Typography>
       <Box sx={{ display: 'flex' }}>
         {source.includes('Tomato') ?
