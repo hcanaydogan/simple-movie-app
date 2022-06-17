@@ -18,7 +18,7 @@ function MovieCard({Year, Title, Type, imdbID, Poster}) {
         component="img"
         height="140"
         image={Poster}
-        alt="green iguana"
+        alt={Title}
       />
       <CardContent>
         <Link color="secondary" href={`/${imdbID}`}>

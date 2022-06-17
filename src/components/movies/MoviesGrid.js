@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieCard from './MovieCard';
+import MovieCardSkeleton from './skeletons/MovieCardSkeleton';
 import Box from '@mui/material/Box';
 
 function MoviesGrid({ movies }) {
@@ -21,7 +22,7 @@ function MoviesGrid({ movies }) {
       },
       justifyItems: 'center'
     }}>
-      {renderedListItems}
+      {movies.length ? renderedListItems : [...Array(10)].map((v, i) => (<MovieCardSkeleton key={i} />))}
     </Box>
   );
 };
