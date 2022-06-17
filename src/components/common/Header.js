@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { SvgIcon } from '@mui/material';
 import { IconButton } from '@mui/material';
 
-export default function Header() {
+function Header() {
   const navigate = useNavigate();
   return (
     <Box component="header">
@@ -22,3 +22,5 @@ export default function Header() {
     </Box>
   );
 }
+
+export default Header;

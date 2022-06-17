@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { viewModeChanged, searchParamsChanged } from '../../store/filters/filters.actions';
 import Toolbar from '@mui/material/Toolbar';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -6,30 +8,43 @@ import SvgIcon from '@mui/material/SvgIcon';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+
+const selectViewMode = state => state.filters.viewMode;
+const selectSearchText = state => state.filters.searchParams.text;
+const selectSearchType = state => state.filters.searchParams.type;
 
 function SearchTool() {
-  const [ searchText, setSearchText ] = useState('');
-  const [ searchType, setSearchType ] = useState('all');
+  const dispatch = useDispatch();
+  const searchText = useSelector(selectSearchText, shallowEqual);
+  const searchType = useSelector(selectSearchType, shallowEqual);
+  const viewMode = useSelector(selectViewMode, shallowEqual);
 
   function handleTextChange(event) {
     console.log('handleTextChange', event.target.value);
-    setSearchText(event.target.value);
+    dispatch(searchParamsChanged({text: event.target.value}));
   }
 
   function handleTypeChange(event, value) {
     console.log('handleTypeChange', value);
-    setSearchType(value)
+    dispatch(searchParamsChanged({type: value}));
   }
 
-  function handleSearchClick(event){
+  function handleSearchClick(event) {
     console.log('handleSearchClick', searchText, searchType);
 
   }
+  function handleViewModeChange(event, value) {
+    console.log('handleViewModeChange', value);
+    if (value) {
+      dispatch(viewModeChanged(value));
+    };
+  }
 
   return (
-    <Toolbar sx={{ margin: '1rem 0', padding: '0.25rem 0' }}>
+    <Toolbar sx={{ margin: '1rem 0', padding: '0.25rem 0', flexWrap: 'wrap' }}>
       <TextField
-        sx={{margin: '1rem'}}
+        sx={{ margin: '1rem', flex: 1, minWidth: '40%' }}
         variant="outlined"
         color="secondary"
         value={searchText}
@@ -44,18 +59,41 @@ function SearchTool() {
           )
         }} />
       <ToggleButtonGroup
-        sx={{margin: '1rem'}}
+        sx={{ margin: '1rem' }}
         color="secondary"
         value={searchType}
         exclusive
         onChange={handleTypeChange}
       >
-        <ToggleButton value="all">All</ToggleButton>
+        <ToggleButton value="">All</ToggleButton>
         <ToggleButton value="movie">Movie</ToggleButton>
         <ToggleButton value="series">Series</ToggleButton>
         <ToggleButton value="episode">Episode</ToggleButton>
       </ToggleButtonGroup>
-      <Button variant="contained" color="secondary" onClick={handleSearchClick} sx={{margin: '1rem'}}>Search</Button>
+      <Button variant="contained" color="secondary" onClick={handleSearchClick} sx={{ margin: '1rem' }}>Search</Button>
+
+      <ToggleButtonGroup
+        sx={{ margin: '1rem', marginLeft: 'auto' }}
+        color="secondary"
+        value={viewMode}
+        exclusive
+        onChange={handleViewModeChange}
+      >
+        <ToggleButton value="table">
+          <Tooltip title="View as Table">
+            <SvgIcon>
+              <path d="M21 8H3V4h18v4zm0 2H3v4h18v-4zm0 6H3v4h18v-4z"></path>
+            </SvgIcon>
+          </Tooltip>
+        </ToggleButton>
+        <ToggleButton value="grid">
+          <Tooltip title="View as Grid">
+            <SvgIcon>
+              <path d="M3 3v8h8V3H3zm6 6H5V5h4v4zm-6 4v8h8v-8H3zm6 6H5v-4h4v4zm4-16v8h8V3h-8zm6 6h-4V5h4v4zm-6 4v8h8v-8h-8zm6 6h-4v-4h4v4z"></path>
+            </SvgIcon>
+          </Tooltip>
+        </ToggleButton>
+      </ToggleButtonGroup>
     </Toolbar>
   )
 }

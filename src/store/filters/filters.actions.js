@@ -1,0 +1,2 @@
+export const viewModeChanged = viewMode => ({ type: 'filters/viewModeChanged', payload: viewMode });
+export const searchParamsChanged = searchParams => ({ type: 'filters/searchParamsChanged', payload: searchParams });

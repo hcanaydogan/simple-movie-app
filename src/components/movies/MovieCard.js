@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 
-const MovieCard = ({Year, Title, Type, imdbID, Poster}) => {
+function MovieCard({Year, Title, Type, imdbID, Poster}) {
   let navigate = useNavigate();
 
   return (

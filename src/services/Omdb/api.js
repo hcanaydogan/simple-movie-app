@@ -20,7 +20,7 @@ async function OmdbGetJson(queryParams) {
 
 export async function getMovies(queryParams) {
   try {
-    return {movies:mockMovies()}; // @TODO remove before commit
+    return {movies: mockMovies()}; // @TODO remove before commit
     const { Search: movies, totalResults } = await OmdbGetJson(queryParams);
     return { movies, totalResults };
   } catch (e) {

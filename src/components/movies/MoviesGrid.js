@@ -2,7 +2,7 @@ import React from 'react';
 import MovieCard from './MovieCard';
 import Box from '@mui/material/Box';
 
-const MoviesGrid = ({ movies }) => {
+function MoviesGrid({ movies }) {
   const renderedListItems = movies.map((movie, i) => {
     return (
       <MovieCard key={i} {...movie} />
