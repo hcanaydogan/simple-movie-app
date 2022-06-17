@@ -36,7 +36,7 @@ function MovieDetailsDescription({ Title, Poster, Plot, Genre = '', Director = '
 function renderListItemText(name, list) {
   list = list.split(',')
   return (
-    <ListItem>
+    <ListItem sx={{paddingLeft: 0}}>
       <ListItemText
         primary={`${name}${list.length > 1 ? 's' : ''}`}
         secondary={

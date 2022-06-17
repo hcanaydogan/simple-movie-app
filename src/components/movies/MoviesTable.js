@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 
 function MoviesTable({ movies }) {
-  const filteredMovies = movies.map(({Poster, ...rest}) => ({...rest}));
+  const moviesWithDisplayProps = movies.map(({Poster, ...rest}) => ({...rest}));
   const renderedHeadRow = movies => (
     <TableRow>
       {Object.keys(movies.at(0)).map((propName, i) => (<TableCell key={i} align={i === 0 ? 'left' : 'right'}>{propName}</TableCell>))}
@@ -31,15 +31,14 @@ function MoviesTable({ movies }) {
     );
   });
 
-  console.log(filteredMovies.length)
-  return filteredMovies.length ? (
+  return moviesWithDisplayProps.length ? (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
-          {renderedHeadRow(filteredMovies)}
+          {renderedHeadRow(moviesWithDisplayProps)}
         </TableHead>
         <TableBody>
-          {renderedBodyRows(filteredMovies)}
+          {renderedBodyRows(moviesWithDisplayProps)}
         </TableBody>
       </Table>
     </TableContainer>
