@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Link from '@mui/material/Link';
 
 function MoviesTable({ movies }) {
   const filteredMovies = movies.map(({Poster, ...rest}) => ({...rest}));
@@ -19,7 +20,13 @@ function MoviesTable({ movies }) {
   const renderedBodyRows = movies => movies.map((movie, i) => {
     return (
       <TableRow key={i}>
-        {Object.entries(movie).map(([propName, value], i) => (<TableCell key={i} align={i === 0 ? 'left' : 'right'}>{value}</TableCell>))}
+        {Object.entries(movie).map(([propName, value], i) => {
+          if (i === 0) {
+            return (<TableCell key={i} align="left"><Link color="secondary" href={`/${movie.imdbID}`}>{value}</Link></TableCell>);
+          }else {
+            return (<TableCell key={i} align="right">{value}</TableCell>)
+          }
+        })}
       </TableRow>
     );
   });

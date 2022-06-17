@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
+import Link from '@mui/material/Link';
 
 function MovieCard({Year, Title, Type, imdbID, Poster}) {
   let navigate = useNavigate();
@@ -20,9 +21,9 @@ function MovieCard({Year, Title, Type, imdbID, Poster}) {
         alt="green iguana"
       />
       <CardContent>
-        <Typography gutterBottom noWrap variant="subtitle1" title={Title}>
+        <Link color="secondary" href={`/${imdbID}`}>
           {Title}
-        </Typography>
+        </Link>
         <Typography variant="subtitle2" color="text.secondary">
           {Year}
         </Typography>
