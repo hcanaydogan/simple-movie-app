@@ -1,9 +1,11 @@
+import moment from "moment";
+
 const intialState = {
   searchParams: {
     text: 'Pokemon',
     type: '',
     page: '',
-    year: '',
+    year: null
   },
   viewMode: 'table'
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { viewModeChanged, searchParamsChanged } from '../../store/filters/filters.actions';
+import { debounce } from '../../utils/helpers';
 import Toolbar from '@mui/material/Toolbar';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -8,30 +9,47 @@ import SvgIcon from '@mui/material/SvgIcon';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
 import Tooltip from '@mui/material/Tooltip';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { YearPicker } from '@mui/x-date-pickers/YearPicker';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import moment from 'moment';
 
 const selectViewMode = state => state.filters.viewMode;
 const selectSearchText = state => state.filters.searchParams.text;
 const selectSearchType = state => state.filters.searchParams.type;
+const selectYear = state => state.filters.searchParams.year;
+const dispatchSearchTextChangedDebounced = debounce((dispatch, value) => dispatch(searchParamsChanged({ text: value })), 400);
 
 function SearchTool() {
+  console.log(moment())
   const dispatch = useDispatch();
-  const searchText = useSelector(selectSearchText, shallowEqual);
+  const searchTextGlobal = useSelector(selectSearchText, shallowEqual);
+  const [searchText, setSearchText] = useState(searchTextGlobal);
   const searchType = useSelector(selectSearchType, shallowEqual);
   const viewMode = useSelector(selectViewMode, shallowEqual);
+  const [yearDropdownOpen, setYearDropdown] = useState(false);
+  const year = useSelector(selectYear, shallowEqual);
 
   function handleTextChange(event) {
-    console.log('handleTextChange', event.target.value);
-    dispatch(searchParamsChanged({text: event.target.value}));
+    const { target: { value } } = event;
+    setSearchText(value);
+    dispatchSearchTextChangedDebounced(dispatch, value);
   }
 
   function handleTypeChange(event, value) {
     console.log('handleTypeChange', value);
-    dispatch(searchParamsChanged({type: value}));
+    dispatch(searchParamsChanged({ type: value }));
+  }
+
+  function handleYearChange(momentDate) {
+    console.log(momentDate)
+    dispatch(searchParamsChanged({ year: momentDate }));
   }
 
   function handleSearchClick(event) {
-    console.log('handleSearchClick', searchText, searchType);
+    console.log('handleSearchClick',);
 
   }
   function handleViewModeChange(event, value) {
@@ -41,6 +59,8 @@ function SearchTool() {
     };
   }
 
+  function setYearText() { }
+  function yearDropdownOpem() { }
   return (
     <Toolbar sx={{ margin: '1rem 0', padding: '0.25rem 0', flexWrap: 'wrap' }}>
       <TextField
@@ -70,6 +90,28 @@ function SearchTool() {
         <ToggleButton value="series">Series</ToggleButton>
         <ToggleButton value="episode">Episode</ToggleButton>
       </ToggleButtonGroup>
+      <LocalizationProvider dateAdapter={AdapterMoment}>
+        <Button
+          id="basic-button"
+          onClick={() => setYearDropdown(true)}
+        >
+          Dashboard
+          <Menu
+          id="basic-menu"
+          open={yearDropdownOpen}
+          sx={{position: 'absolute', width: '50px', height: '50px'}}
+        >
+          <YearPicker
+            date={year}
+            minDate={moment().year(1900)}
+            maxDate={moment().year(2200)}
+            onChange={handleYearChange}
+          />
+        </Menu>
+        </Button>
+       
+
+      </LocalizationProvider>
       <Button variant="contained" color="secondary" onClick={handleSearchClick} sx={{ margin: '1rem' }}>Search</Button>
 
       <ToggleButtonGroup
