@@ -19,6 +19,7 @@ function Movie() {
       try {
         const movieDetails = await getMovieDetails(queryParams);
         setMovie(movieDetails);
+        document.title = movieDetails.Title;
         setFetchingStatus('success');
       } catch (e) {
         setFetchingStatus('error');

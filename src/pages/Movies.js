@@ -5,7 +5,7 @@ import MoviesGrid from "../components/movies/MoviesGrid";
 import MoviesTable from "../components/movies/MoviesTable";
 import SearchTool from '../components/search/SearchTool';
 
-const selectMovies = state => state.movies.entities;
+const selectMovies = state => state.movies;
 const selectViewModeFilter = state => state.filters.viewMode;
 
 function Movies() {
@@ -14,16 +14,20 @@ function Movies() {
   const viewMode = useSelector(selectViewModeFilter, shallowEqual);
 
   useEffect(() => {
+    console.log('use effect',movies);
     dispatch(fetchMoviesByFilters());
   }, []);
 
+console.log(movies)
   return (
     <>
       <SearchTool />
-      {viewMode === 'table' ?
-        <MoviesTable movies={movies} />
-        :
-        <MoviesGrid movies={movies} />
+      {movies.status !== 'error' ? (
+        viewMode === 'table' ?
+          <MoviesTable movies={movies.entities} loading={movies.status === 'loading'} />
+          :
+          <MoviesGrid movies={movies.entities} loading={movies.status === 'loading'} />
+      ) : <p>Error while fetching movies.</p>
       }
     </>
   )

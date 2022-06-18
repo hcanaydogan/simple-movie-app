@@ -3,7 +3,7 @@ import MovieCard from './MovieCard';
 import MovieCardSkeleton from './skeletons/MovieCardSkeleton';
 import Box from '@mui/material/Box';
 
-function MoviesGrid({ movies }) {
+function MoviesGrid({ movies, loading }) {
   const renderedListItems = movies.map((movie, i) => {
     return (
       <MovieCard key={i} {...movie} />
@@ -22,7 +22,7 @@ function MoviesGrid({ movies }) {
       },
       justifyItems: 'center'
     }}>
-      {movies.length ? renderedListItems : [...Array(10)].map((v, i) => (<MovieCardSkeleton key={i} />))}
+      {!loading && movies.length ? renderedListItems : [...Array(10)].map((v, i) => (<MovieCardSkeleton key={i} />))}
     </Box>
   );
 };

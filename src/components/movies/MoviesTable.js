@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import SkeletonTable from '../common/SkeletonTable';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,7 +10,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 
-function MoviesTable({ movies }) {
+function MoviesTable({ movies, loading }) {
+  let navigate = useNavigate();
   const moviesWithDisplayProps = movies.map(({Poster, ...rest}) => ({...rest}));
   const renderedHeadRow = movies => (
     <TableRow>
@@ -22,7 +24,7 @@ function MoviesTable({ movies }) {
       <TableRow key={i}>
         {Object.entries(movie).map(([propName, value], i) => {
           if (i === 0) {
-            return (<TableCell key={i} align="left"><Link color="secondary" href={`/${movie.imdbID}`}>{value}</Link></TableCell>);
+            return (<TableCell key={i} align="left"><Link color="secondary" onClick={() => navigate(movie.imdbID)} sx={{cursor: 'pointer'}}>{value}</Link></TableCell>);
           }else {
             return (<TableCell key={i} align="right">{value}</TableCell>)
           }
@@ -31,7 +33,7 @@ function MoviesTable({ movies }) {
     );
   });
 
-  return moviesWithDisplayProps.length ? (
+  return !loading && moviesWithDisplayProps.length ? (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>

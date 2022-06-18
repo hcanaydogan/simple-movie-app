@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { fetchMoviesByFilters } from '../../store/movies/movies.actions';
 import { searchParamsChanged } from '../../store/filters/filters.actions';
 import { debounce } from '../../utils/helpers';
 import TextField from '@mui/material/TextField';
@@ -8,6 +9,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 
 const selectSearchText = state => state.filters.searchParams.text;
 const dispatchSearchTextChangedDebounced = debounce((dispatch, value) => dispatch(searchParamsChanged({ text: value })), 400);
+const dispatchFetchMoviesDebounced = debounce((dispatch) => dispatch(fetchMoviesByFilters()), 400);
 
 function SearchText() {
   const dispatch = useDispatch();
@@ -20,6 +22,10 @@ function SearchText() {
     dispatchSearchTextChangedDebounced(dispatch, value);
   }
 
+  function handleTextKeydown({key}){
+    if(key === 'Enter') dispatchFetchMoviesDebounced(dispatch);
+  }
+
   return (
     <TextField
       sx={{ margin: '1rem', flex: 1, minWidth: '40%' }}
@@ -27,6 +33,7 @@ function SearchText() {
       color="secondary"
       value={searchText}
       onChange={handleTextChange}
+      onKeyDown={handleTextKeydown}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
