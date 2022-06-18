@@ -15,33 +15,44 @@ function Movie() {
   useEffect(() => {
     (async () => {
       const queryParams = getParamsForMovieDetailsApi(params.imdbId);
-      const movieDetails = await getMovieDetails(queryParams);
-      console.log('movieDetails', movieDetails)
-      setMovie(movieDetails);
+      setFetchingStatus('loading');
+      try {
+        const movieDetails = await getMovieDetails(queryParams);
+        setMovie(movieDetails);
+        setFetchingStatus('success');
+      } catch (e) {
+        setFetchingStatus('error');
+      }
     })();
   }, []);
 
-  const { Title, Year, Runtime, Rated, Ratings = [], Poster, Plot, Genre, Director, Writer, Actors } = movie;
+  return renderPage(fetchingStatus, movie);
+}
 
-  return (
-    <>
-      {Object.keys(movie).length ?
-        (
-          <>
-            <MovieDetailsHeader {...{ ...{ Title, Year, Rated, Runtime, Ratings } }} />
-            <MovieDetailsDescription {...{ ...{ Title, Poster, Plot, Genre, Director, Writer, Actors } }} />
-          </>
-        )
-        :
-        (
-          <>
-            <MovieDetailsHeaderSkeleton />
-            <MovieDetailsDescriptionSkeleton />
-          </>
-        )
-      }
-    </>
-  );
+function renderPage(status, movie) {
+  switch (status) {
+    case 'loading':
+      return (
+        <>
+          <MovieDetailsHeaderSkeleton />
+          <MovieDetailsDescriptionSkeleton />
+        </>
+      );
+    case 'error':
+      return (
+        <p>Movie not found</p>
+      );
+    case 'success':
+      const { Title, Year, Runtime, Rated, Ratings = [], Poster, Plot, Genre, Director, Writer, Actors } = movie;
+      return (
+        <>
+          <MovieDetailsHeader {...{ ...{ Title, Year, Rated, Runtime, Ratings } }} />
+          <MovieDetailsDescription {...{ ...{ Title, Poster, Plot, Genre, Director, Writer, Actors } }} />
+        </>
+      );
+    default:
+      return null;
+  }
 }
 
 export default Movie;

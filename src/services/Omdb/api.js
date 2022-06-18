@@ -20,7 +20,7 @@ async function OmdbGetJson(queryParams) {
 
 export async function getMovies(queryParams) {
   try {
-    return {movies:[]}// {movies: mockMovies()}; // @TODO remove before commit
+    //return {movies:[]}// {movies: mockMovies()}; // @TODO remove before commit
     const { Search: movies, totalResults } = await OmdbGetJson(queryParams);
     return { movies, totalResults };
   } catch (e) {
@@ -31,7 +31,7 @@ export async function getMovies(queryParams) {
 
 export async function getMovieDetails(queryParams) {
   try {
-    return {}//mockDetails(); // @TODO remove before commit
+    //return {}//mockDetails(); // @TODO remove before commit
     return await OmdbGetJson(queryParams);
   } catch (e) {
     console.error('%cError while fetching movies: ', 'font-size: 18px; background: black; color: orange;', '\n', e);

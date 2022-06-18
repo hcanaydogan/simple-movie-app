@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { fetchMoviesByFilters } from '../../store/movies/movies.actions';
 import SearchText from './SearchText';
 import SearchTypesToggle from './SearchTypesToggle';
 import SearchViewToggle from './SearchViewToggle';
@@ -9,10 +10,9 @@ import Button from '@mui/material/Button';
 
 function SearchTool() {
   const dispatch = useDispatch();
-  const searchParams = useSelector(state => state.filters.searchParams, shallowEqual);
-  console.log('searchParams SearchTool',searchParams)
-  function handleSearchClick(event) {
+  function handleSearchClick() {
     console.log('handleSearchClick');
+    dispatch(fetchMoviesByFilters());
   }
   
   return (

@@ -26,10 +26,16 @@ function App() {
     <ThemeProvider theme={theme}>
       <Container maxWidth="xl" className='main-container'>
         <Header />
-        <main style={{backgroundColor: 'whitesmoke'}}>
+        <main style={{ backgroundColor: 'whitesmoke' }}>
           <Routes>
             <Route index element={<Movies />} />
             <Route path=":imdbId" element={<Movie />} />
+            <Route
+              path="*"
+              element={
+                <p>There's nothing here!</p>
+              }
+            />
           </Routes>
         </main>
         <Footer />
