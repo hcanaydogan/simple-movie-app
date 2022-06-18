@@ -11,7 +11,6 @@ function SearchTypesToggle() {
   const searchType = useSelector(selectSearchType, shallowEqual);
 
   function handleTypeChange(event, value) {
-    console.log('handleTypeChange', value);
     if (value !== null) dispatch(searchParamsChanged({ type: value }));
   }
 

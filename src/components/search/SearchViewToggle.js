@@ -13,7 +13,6 @@ function SearchViewToggle() {
   const viewMode = useSelector(selectViewMode, shallowEqual);
 
   function handleViewModeChange(event, value) {
-    console.log('handleViewModeChange', value);
     if (value !== null) {
       dispatch(viewModeChanged(value));
     };

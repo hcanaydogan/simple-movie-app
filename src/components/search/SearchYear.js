@@ -29,7 +29,7 @@ function SearchYear() {
         views={['year']}
         value={year}
         onChange={handleYearChange}
-        renderInput={(params) => (console.log('params', params), <DatePickerInput {...params} handleYearChange={handleYearChange}/>)}
+        renderInput={(params) =>  <DatePickerInput {...params} handleYearChange={handleYearChange}/>}
       />
     </LocalizationProvider>
   )
