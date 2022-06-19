@@ -35,7 +35,7 @@ function Movies() {
           {viewMode === 'table' ? <MoviesTable movies={movies.entities} loading={movies.status === 'loading'} /> : <MoviesGrid movies={movies.entities} loading={movies.status === 'loading'} />}
           {totalPages > 1 && <Pagination count={totalPages} page={page} onChange={handlePageChange} sx={{display: 'flex', justifyContent: 'center', margin: '2rem'}}/>}
         </>
-      ) : <p>Error while fetching movies.</p>
+      ) : <p>{movies.errorMessage}</p>
       }
     </>
   )

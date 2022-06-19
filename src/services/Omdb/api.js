@@ -24,7 +24,7 @@ export async function getMovies(queryParams) {
     return { movies, totalResults };
   } catch (e) {
     console.error('%cError while fetching movies: ', 'font-size: 18px; background: black; color: orange;', '\n', e);
-    throw new Error(e);
+    throw new Error(e.message);
   }
 }
 
@@ -33,6 +33,6 @@ export async function getMovieDetails(queryParams) {
     return await OmdbGetJson(queryParams);
   } catch (e) {
     console.error('%cError while fetching movies: ', 'font-size: 18px; background: black; color: orange;', '\n', e);
-    throw new Error(e);
+    throw new Error(e.message);
   }
 }

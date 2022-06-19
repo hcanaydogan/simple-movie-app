@@ -9,20 +9,20 @@ import MovieDetailsDescriptionSkeleton from '../components/movies/skeletons/Movi
 
 function Movie() {
   const params = useParams();
-  const [fetchingStatus, setFetchingStatus] = useState('loading');
+  const [fetchingStatus, setFetchingStatus] = useState({ name: 'loading', message: ''});
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
     (async () => {
       const queryParams = getParamsForMovieDetailsApi(params.imdbId);
-      setFetchingStatus('loading');
+      setFetchingStatus({name: 'loading'});
       try {
         const movieDetails = await getMovieDetails(queryParams);
         setMovie(movieDetails);
         document.title = movieDetails.Title;
-        setFetchingStatus('success');
+        setFetchingStatus({name:'success'});
       } catch (e) {
-        setFetchingStatus('error');
+        setFetchingStatus({name:'error', message: e.message});
       }
     })();
   }, []);
@@ -31,7 +31,7 @@ function Movie() {
 }
 
 function renderPage(status, movie) {
-  switch (status) {
+  switch (status.name) {
     case 'loading':
       return (
         <>
@@ -41,7 +41,7 @@ function renderPage(status, movie) {
       );
     case 'error':
       return (
-        <p>Movie not found</p>
+        <p>{status.message}</p>
       );
     case 'success':
       const { Title, Year, Runtime, Rated, Ratings = [], Poster, Plot, Genre, Director, Writer, Actors } = movie;

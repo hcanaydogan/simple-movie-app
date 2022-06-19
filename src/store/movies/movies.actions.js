@@ -12,7 +12,7 @@ export const fetchMoviesByFilters = () => async (dispatch, getState) => {
     const {movies, totalResults} = await getMovies(queryParams);
     dispatch(moviesFetchedSuccess({movies, totalResults}));
   } catch (e) {
-    dispatch(moviesFetchedError(e.toString()));
+    dispatch(moviesFetchedError(e.message));
   }
 }
 
