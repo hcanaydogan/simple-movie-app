@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { fetchMoviesByFilters } from '../../store/movies/movies.actions';
+import { searchParamsChanged } from '../../store/filters/filters.actions';
 import SearchText from './SearchText';
 import SearchTypesToggle from './SearchTypesToggle';
 import SearchViewToggle from './SearchViewToggle';
@@ -10,8 +11,9 @@ import Button from '@mui/material/Button';
 
 function SearchTool() {
   const dispatch = useDispatch();
+
   function handleSearchClick() {
-    console.log('handleSearchClick');
+    dispatch(searchParamsChanged({page: 1}));
     dispatch(fetchMoviesByFilters());
   }
   

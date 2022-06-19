@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import { viewModeChanged } from '../../store/filters/filters.actions';
+import { viewModeChanged} from '../../store/filters/filters.actions';
 import SvgIcon from '@mui/material/SvgIcon';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';

@@ -4,7 +4,7 @@ const intialState = {
   searchParams: {
     text: 'Pokemon',
     type: '',
-    page: '',
+    page: 1,
     year: null
   },
   viewMode: 'table'

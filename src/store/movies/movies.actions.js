@@ -6,7 +6,6 @@ export const moviesFetchedError = error => ({ type: 'movies/moviesFetchedError',
 export const moviesFetchStarted = error => ({ type: 'movies/moviesFetching' });
 
 export const fetchMoviesByFilters = () => async (dispatch, getState) => {
-  console.log('fetchMoviesByFilters')
   dispatch(moviesFetchStarted());
   try {
     const queryParams = getParamsForMoviesApi(getState().filters.searchParams);

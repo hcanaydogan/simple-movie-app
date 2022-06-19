@@ -23,7 +23,10 @@ function SearchText() {
   }
 
   function handleTextKeydown({key}){
-    if(key === 'Enter') dispatchFetchMoviesDebounced(dispatch);
+    if(key === 'Enter') {
+      dispatch(searchParamsChanged({page: 1}));
+      dispatchFetchMoviesDebounced(dispatch);
+    }
   }
 
   return (

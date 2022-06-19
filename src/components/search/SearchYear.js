@@ -41,7 +41,7 @@ function DatePickerInput({handleYearChange, ...props}) {
     <FormControl
       sx={{width: '150px'}}
     >
-      <TextField {...props} onChange={() => console.log(2)} disabled sx={{WebkitTextFillColor: 'black', color: 'black'}}/>
+      <TextField {...props} disabled sx={{WebkitTextFillColor: 'black', color: 'black'}}/>
       <Button variant="text" onClick={()=>handleYearChange(null)} sx={{position: 'absolute', fontSize: '0.6rem', transform: 'translateY(100%)', bottom: 0, right: '-5px', color: 'crimson'}}>Clear</Button>
     </FormControl>
   )
